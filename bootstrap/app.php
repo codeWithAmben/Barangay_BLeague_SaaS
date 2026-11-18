@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Middleware\EnsureRole;
+use App\Http\Middleware\EnsureTenant;
+use App\Http\Middleware\ResolveTenantFromAuth;
+use App\Http\Middleware\ResolveTenantFromRoute;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -12,7 +16,15 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        $middleware->web(append: [
+            ResolveTenantFromAuth::class,
+        ]);
+
+        $middleware->alias([
+            'tenant' => EnsureTenant::class,
+            'tenant.route' => ResolveTenantFromRoute::class,
+            'role' => EnsureRole::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
