@@ -133,4 +133,45 @@ class TournamentTeamPlayerCrudTest extends TestCase
 
         $this->assertDatabaseHas('players', ['id' => $player->id]);
     }
+
+    public function test_authenticated_dashboard_views_render_with_broadcast_design_system(): void
+    {
+        $tenant = Tenant::factory()->pro()->create(['name' => 'Barangay San Roque']);
+        $commissioner = User::factory()->forTenant($tenant)->create();
+        $tournament = Tournament::factory()->create(['tenant_id' => $tenant->id, 'name' => 'SK Summer League 2026']);
+        $team = Team::factory()->create(['tenant_id' => $tenant->id, 'tournament_id' => $tournament->id, 'name' => 'Purok 1 Kings']);
+        Player::factory()->create([
+            'tenant_id' => $tenant->id,
+            'team_id' => $team->id,
+            'first_name' => 'Jericho',
+            'last_name' => 'Alvarez',
+            'jersey_number' => '7',
+        ]);
+
+        $this->actingAs($commissioner)
+            ->get(route('dashboard'))
+            ->assertOk()
+            ->assertSee('Commissioner Command Center')
+            ->assertSee('arena-chamfer')
+            ->assertSee('Active Barangay');
+
+        $this->actingAs($commissioner)
+            ->get(route('tournaments.index'))
+            ->assertOk()
+            ->assertSee('SK Summer League 2026')
+            ->assertSee('btn-hoops-primary');
+
+        $this->actingAs($commissioner)
+            ->get(route('teams.index'))
+            ->assertOk()
+            ->assertSee('Purok 1 Kings')
+            ->assertSee('Manage Roster');
+
+        $this->actingAs($commissioner)
+            ->get(route('players.index'))
+            ->assertOk()
+            ->assertSee('Jericho Alvarez')
+            ->assertSee('#7')
+            ->assertSee('Homegrown');
+    }
 }

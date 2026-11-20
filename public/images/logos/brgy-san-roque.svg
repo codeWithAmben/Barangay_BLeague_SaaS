@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <defs>
+    <linearGradient id="sr-shield" x1="15" y1="10" x2="105" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#172a56"/>
+      <stop offset="100%" stop-color="#070d1d"/>
+    </linearGradient>
+    <linearGradient id="sr-gold" x1="20" y1="10" x2="100" y2="110" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="sr-ball" x1="40" y1="68" x2="80" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+  </defs>
+  <path d="M60 8L104 22V58C104 86 84 104 60 113C36 104 16 86 16 58V22L60 8Z" fill="url(#sr-shield)" stroke="url(#sr-gold)" stroke-width="4"/>
+  <path d="M60 14L98 26V58C98 81 80 97 60 105C40 97 22 81 22 58V26L60 14Z" stroke="#38bdf8" stroke-opacity="0.35" stroke-width="1.5"/>
+  <polygon points="60,18 62.4,24 68.8,24 63.6,27.8 65.6,34 60,30.2 54.4,34 56.4,27.8 51.2,24 57.6,24" fill="#fbbf24"/>
+  <polygon points="44,23 45.6,27 49.8,27 46.4,29.5 47.7,33.5 44,31 40.3,33.5 41.6,29.5 38.2,27 42.4,27" fill="#fbbf24" opacity="0.9"/>
+  <polygon points="76,23 77.6,27 81.8,27 78.4,29.5 79.7,33.5 76,31 72.3,33.5 73.6,29.5 70.2,27 74.4,27" fill="#fbbf24" opacity="0.9"/>
+  <text x="60" y="45" text-anchor="middle" fill="#f8fafc" font-family="Arial, sans-serif" font-weight="800" font-size="9" letter-spacing="1.5">BARANGAY</text>
+  <text x="60" y="61" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-weight="900" font-size="14" letter-spacing="0.5">SAN ROQUE</text>
+  <circle cx="60" cy="84" r="16" fill="url(#sr-ball)" stroke="#0f172a" stroke-width="2"/>
+  <path d="M44 84H76M60 68V100M48 73C54 78 54 90 48 95M72 73C66 78 66 90 72 95" stroke="#0f172a" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

@@ -28,6 +28,23 @@ class Tenant extends Model
         return 'slug';
     }
 
+    public function logoUrl(): ?string
+    {
+        if (blank($this->logo_path)) {
+            return null;
+        }
+
+        if (str_starts_with($this->logo_path, 'http://') || str_starts_with($this->logo_path, 'https://')) {
+            return $this->logo_path;
+        }
+
+        if (str_starts_with($this->logo_path, 'images/')) {
+            return asset($this->logo_path);
+        }
+
+        return asset('storage/'.$this->logo_path);
+    }
+
     /**
      * @return array<string, string>
      */
